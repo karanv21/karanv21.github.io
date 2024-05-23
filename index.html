@@ -17,7 +17,7 @@
         header {
             position: relative;
             height: 100vh;
-            background: url('https://source.unsplash.com/random/1920x1080') no-repeat center center/cover;
+            background: url('https://source.unsplash.com/featured/?technology,colors,future') no-repeat center center/cover;
             color: #fff;
             display: flex;
             flex-direction: column;
@@ -48,7 +48,7 @@
             left: 0;
             top: 0;
             height: 100%;
-            width: 80px;
+            width: 60px;
             background-color: rgba(0, 0, 0, 0.8);
             display: flex;
             flex-direction: column;
@@ -58,9 +58,11 @@
         nav a {
             color: #fff;
             text-decoration: none;
-            font-size: 1.5em;
+            font-size: 1.2em;
             margin: 1em 0;
             transition: color 0.3s ease;
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
         }
         nav a:hover {
             color: #ff6347;
@@ -194,4 +196,43 @@
             </div>
             <div class="project-list">
                 <div class="project-item" data-category="business">
-                    <img src="https://via.placeholder.com/300" alt="Business Project
+                    <img src="https://via.placeholder.com/300" alt="Business Project">
+                    <h3>Business Project</h3>
+                    <p>Description of the business project.</p>
+                </div>
+                <div class="project-item" data-category="coding">
+                    <img src="https://via.placeholder.com/300" alt="Coding Project">
+                    <h3>Coding Project</h3>
+                    <p>Description of the coding project.</p>
+                </div>
+                <div class="project-item" data-category="design">
+                    <img src="https://via.placeholder.com/300" alt="Design Project">
+                    <h3>Design Project</h3>
+                    <p>Description of the design project.</p>
+                </div>
+            </div>
+        </section>
+        <section id="resume">
+            <h2>Resume</h2>
+            <p>For more details, please <a href="path/to/your/resume.pdf" target="_blank">view my resume</a>.</p>
+        </section>
+        <section id="contact">
+            <h2>Contact Information</h2>
+            <form class="contact-form">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+                <button type="submit">Send</button>
+            </form>
+        </section>
+    </div>
+    <footer>
+        <p>&copy; 2024 Karan Vasdev. All Rights Reserved.</p>
+    </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const navLinks = document.querySelectorAll("nav a");
+            const filterButtons = document.querySelectorAll(".projects .filters button");
+            const projectItems = document.querySelectorAll(".projects .project-item");
+
+            navLinks.forEach(link => {
