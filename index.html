@@ -15,119 +15,88 @@
             overflow-x: hidden;
         }
         header {
-            background-color: #333;
-            color: #fff;
-            padding: 2em 0;
-            text-align: center;
             position: relative;
-            overflow: hidden;
+            height: 100vh;
+            background: url('https://source.unsplash.com/random/1920x1080') no-repeat center center/cover;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
         }
         header h1 {
-            animation: slideIn 2s ease-out;
-            font-size: 3em;
+            font-size: 4em;
             margin: 0;
+            animation: fadeInDown 2s ease-out;
         }
         header p {
-            font-size: 1.2em;
-            margin: 0.5em 0 0;
+            font-size: 1.5em;
+            margin-top: 0.5em;
+            animation: fadeInUp 2s ease-out;
         }
-        @keyframes slideIn {
-            from {
-                transform: translateX(-100%);
-            }
-            to {
-                transform: translateX(0);
-            }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         nav {
-            display: flex;
-            justify-content: center;
-            background-color: #444;
-            padding: 0.5em 0;
-            position: sticky;
+            position: fixed;
+            left: 0;
             top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            height: 100%;
+            width: 80px;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
         nav a {
             color: #fff;
-            margin: 0 1em;
             text-decoration: none;
-            font-weight: bold;
-            position: relative;
-            font-size: 1.1em;
+            font-size: 1.5em;
+            margin: 1em 0;
+            transition: color 0.3s ease;
         }
         nav a:hover {
             color: #ff6347;
         }
-        nav a::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 2px;
-            background-color: #ff6347;
-            bottom: -4px;
-            left: 0;
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-        }
-        nav a:hover::after {
-            transform: scaleX(1);
-        }
-        .hero {
-            background-image: url('https://source.unsplash.com/random/1920x1080');
-            background-size: cover;
-            background-position: center;
-            color: #fff;
-            padding: 4em 0;
-            text-align: center;
-            position: relative;
-        }
-        .hero h2 {
-            font-size: 2.5em;
-            margin: 0;
-        }
-        .hero p {
-            font-size: 1.5em;
-            margin: 0.5em 0 1em;
-        }
         .container {
-            max-width: 800px;
+            max-width: 1200px;
             margin: 2em auto;
-            background-color: #fff;
             padding: 2em;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            animation: fadeIn 2s ease-in;
-        }
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
         }
         section {
-            margin-bottom: 2em;
+            padding: 4em 2em;
         }
         h2 {
-            color: #333;
-            position: relative;
+            font-size: 2.5em;
+            margin-bottom: 0.5em;
+            text-align: center;
         }
-        h2::after {
-            content: '';
-            position: absolute;
-            width: 50px;
-            height: 4px;
-            background-color: #ff6347;
-            left: 0;
-            bottom: -10px;
-            border-radius: 2px;
+        .about {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .about img {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            margin-bottom: 1em;
+            transition: transform 0.3s ease;
+        }
+        .about img:hover {
+            transform: scale(1.1);
         }
         .projects .filters {
             display: flex;
             justify-content: center;
-            margin-bottom: 1em;
+            margin-bottom: 2em;
         }
         .projects .filters button {
             padding: 0.5em 1em;
@@ -144,14 +113,31 @@
             color: #fff;
         }
         .projects .project-list {
-            display: none;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
         }
-        .projects .project-list.active {
-            display: block;
+        .projects .project-item {
+            width: 30%;
+            margin-bottom: 2em;
+            transition: transform 0.3s ease;
+        }
+        .projects .project-item img {
+            width: 100%;
+            border-radius: 8px;
+        }
+        .projects .project-item:hover {
+            transform: scale(1.05);
+        }
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         .contact-form input, .contact-form textarea {
             width: 100%;
-            padding: 0.5em;
+            max-width: 600px;
+            padding: 1em;
             margin-bottom: 1em;
             border: 1px solid #ddd;
             border-radius: 4px;
@@ -161,7 +147,7 @@
             border-color: #ff6347;
         }
         .contact-form button {
-            padding: 0.7em 2em;
+            padding: 1em 2em;
             border: none;
             border-radius: 4px;
             background-color: #333;
@@ -175,66 +161,10 @@
         footer {
             text-align: center;
             padding: 1em 0;
-            background-color: #333;
+            background-color: #000;
             color: #fff;
         }
-        .scroll-animation {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.5s ease-out;
-        }
-        .scroll-animation.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
     </style>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const navLinks = document.querySelectorAll("nav a");
-            const scrollElements = document.querySelectorAll(".scroll-animation");
-            const filterButtons = document.querySelectorAll(".projects .filters button");
-            const projectLists = document.querySelectorAll(".projects .project-list");
-
-            navLinks.forEach(link => {
-                link.addEventListener("click", function(event) {
-                    event.preventDefault();
-                    const targetId = this.getAttribute("href").substring(1);
-                    const targetElement = document.getElementById(targetId);
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 60,
-                        behavior: 'smooth'
-                    });
-                });
-            });
-
-            const scrollCallback = function(entries) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            };
-
-            const observer = new IntersectionObserver(scrollCallback);
-            scrollElements.forEach(el => observer.observe(el));
-
-            filterButtons.forEach(button => {
-                button.addEventListener("click", function() {
-                    filterButtons.forEach(btn => btn.classList.remove('active'));
-                    this.classList.add('active');
-
-                    const filter = this.getAttribute("data-filter");
-                    projectLists.forEach(list => {
-                        if (list.getAttribute("data-filter") === filter || filter === "all") {
-                            list.classList.add('active');
-                        } else {
-                            list.classList.remove('active');
-                        }
-                    });
-                });
-            });
-        });
-    </script>
 </head>
 <body>
     <header>
@@ -242,16 +172,60 @@
         <p>Innovator and Technologist</p>
     </header>
     <nav>
-        <a href="#about">About Me</a>
+        <a href="#about">About</a>
         <a href="#projects">Projects</a>
         <a href="#resume">Resume</a>
         <a href="#contact">Contact</a>
     </nav>
-    <div class="hero">
-        <h2>Welcome to My Personal Website</h2>
-        <p>Empowering businesses with technology and empathy</p>
-    </div>
     <div class="container">
-        <section id="about" class="scroll-animation">
+        <section id="about" class="about">
             <h2>About Me</h2>
-            <p>Technically grounded and a continual learner, Karan has experience in machine learning, sustainability, and fintech, and hopes to leverage his skills to create products and strategies with a positive impact. His strengths are applying structured problem-solving to complex
+            <img src="https://via.placeholder.com/150" alt="Karan Vasdev">
+            <p>Technically grounded and a continual learner, Karan has experience in machine learning, sustainability, and fintech, and hopes to leverage his skills to create products and strategies with a positive impact. His strengths are applying structured problem-solving to complex issues and communicating effectively across multiple contexts.</p>
+            <p>Karan's upbringing in 9 different countries across 4 continents inspires his love of business strategy and emerging technologies. He is also deeply passionate about entrepreneurship and social impact.</p>
+        </section>
+        <section id="projects" class="projects">
+            <h2>Projects</h2>
+            <div class="filters">
+                <button class="active" data-filter="all">All</button>
+                <button data-filter="business">Business</button>
+                <button data-filter="coding">Coding</button>
+                <button data-filter="design">Design</button>
+            </div>
+            <div class="project-list">
+                <div class="project-item" data-category="business">
+                    <img src="https://via.placeholder.com/300" alt="Business Project">
+                    <h3>Business Project</h3>
+                    <p>Description of the business project.</p>
+                </div>
+                <div class="project-item" data-category="coding">
+                    <img src="https://via.placeholder.com/300" alt="Coding Project">
+                    <h3>Coding Project</h3>
+                    <p>Description of the coding project.</p>
+                </div>
+                <div class="project-item" data-category="design">
+                    <img src="https://via.placeholder.com/300" alt="Design Project">
+                    <h3>Design Project</h3>
+                    <p>Description of the design project.</p>
+                </div>
+            </div>
+        </section>
+        <section id="resume">
+            <h2>Resume</h2>
+            <p>For more details, please <a href="path/to/your/resume.pdf" target="_blank">view my resume</a>.</p>
+        </section>
+        <section id="contact">
+            <h2>Contact Information</h2>
+            <form class="contact-form">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+                <button type="submit">Send</button>
+            </form>
+        </section>
+    </div>
+    <footer>
+        <p>&copy; 2024 Karan Vasdev. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
