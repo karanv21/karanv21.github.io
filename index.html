@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karan Vasdev - Innovator and Technologist</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            overflow-x: hidden;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 2em 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        header h1 {
+            animation: slideIn 2s ease-out;
+            font-size: 2.5em;
+            margin: 0;
+        }
+        header p {
+            font-size: 1.2em;
+            margin: 0.5em 0 0;
+        }
+        @keyframes slideIn {
+            from {
+                transform: translateX(-100%);
+            }
+            to {
+                transform: translateX(0);
+            }
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #444;
+            padding: 0.5em 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        nav a {
+            color: #fff;
+            margin: 0 1em;
+            text-decoration: none;
+            font-weight: bold;
+            position: relative;
+        }
+        nav a:hover {
+            color: #ff6347;
+        }
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: #ff6347;
+            bottom: -4px;
+            left: 0;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        nav a:hover::after {
+            transform: scaleX(1);
+        }
+        .hero {
+            background-image: url('https://source.unsplash.com/random/1920x1080');
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            padding: 4em 0;
+            text-align: center;
+            position: relative;
+        }
+        .hero h2 {
+            font-size: 2.5em;
+            margin: 0;
+        }
+        .hero p {
+            font-size: 1.5em;
+            margin: 0.5em 0 1em;
+        }
+        .container {
+            max-width: 800px;
+            margin: 2em auto;
+            background-color: #fff;
+            padding: 2em;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            animation: fadeIn 2s ease-in;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        section {
+            margin-bottom: 2em;
+        }
+        h2 {
+            color: #333;
+            position: relative;
+        }
+        h2::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 4px;
+            background-color: #ff6347;
+            left: 0;
+            bottom: -10px;
+            border-radius: 2px;
+        }
+        .projects .filters {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1em;
+        }
+        .projects .filters button {
+            padding: 0.5em 1em;
+            margin: 0 0.5em;
+            border: none;
+            background-color: #ddd;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+        .projects .filters button:hover,
+        .projects .filters button.active {
+            background-color: #ff6347;
+            color: #fff;
+        }
+        .projects .project-list {
+            display: none;
+        }
+        .projects .project-list.active {
+            display: block;
+        }
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 0.5em;
+            margin-bottom: 1em;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            transition: border-color 0.3s ease;
+        }
+        .contact-form input:focus, .contact-form textarea:focus {
+            border-color: #ff6347;
+        }
+        .contact-form button {
+            padding: 0.7em 2em;
+            border: none;
+            border-radius: 4px;
+            background-color: #333;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .contact-form button:hover {
+            background-color: #ff6347;
+        }
+        footer {
+            text-align: center;
+            padding: 1em 0;
+            background-color: #333;
+            color: #fff;
+        }
+        .scroll-animation {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.5s ease-out;
+        }
+        .scroll-animation.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const navLinks = document.querySelectorAll("nav a");
+            const scrollElements = document.querySelectorAll(".scroll-animation");
+            const filterButtons = document.querySelectorAll(".projects .filters button");
+            const projectLists = document.querySelectorAll(".projects .project-list");
+
+            navLinks.forEach(link => {
+                link.addEventListener("click", function(event) {
+                    event.preventDefault();
+                    const targetId = this.getAttribute("href").substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 60,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            const scrollCallback = function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            };
+
+            const observer = new IntersectionObserver(scrollCallback);
+            scrollElements.forEach(el => observer.observe(el));
+
+            filterButtons.forEach(button => {
+                button.addEventListener("click", function() {
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+
+                    const filter = this.getAttribute("data-filter");
+                    projectLists.forEach(list => {
+                        if (list.getAttribute("data-filter") === filter || filter === "all") {
+                            list.classList.add('active');
+                        } else {
+                            list.classList.remove('active');
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Karan Vasdev</h1>
+        <p>Innovator and Technologist</p>
+    </header>
+    <nav>
+        <a href="#about">About Me</a>
+        <a href="#projects">Projects</a>
+        <a href="#resume">Resume</a>
+        <a href="#contact">Contact</a>
+    </nav>
+    <div class="hero">
+        <h2>Welcome to My Personal Website</h2>
+        <p>Empowering businesses with technology and empathy</p>
+    </div>
+    <div class="container">
+        <section id="about" class="scroll-animation">
+            <h2>About Me</h2>
+            <p>Technically grounded and a continual learner, Karan has experience in machine learning, sustainability, and fintech, and hopes to leverage his skills to create products and strategies with a positive impact. His strengths are applying structured problem-solving to complex issues and communicating effectively across multiple contexts
